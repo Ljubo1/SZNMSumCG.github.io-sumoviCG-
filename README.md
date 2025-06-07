@@ -28,15 +28,15 @@
   <h1>Služba za nadzor mreže i servisa</h1>
 
   <div>
-    <select id="dugmad">
-      <option value="">-- Izaberi dugme --</option>
+    <select id="Grad">
+      <option value="">-- Izaberi Grad --</option>
       <!-- Automatski punimo dugmad putem JS -->
     </select>
     <button onclick="otvori()">Otvori</button>
   </div>
 
   <script>
-    const select = document.getElementById('dugmad');
+    const select = document.getElementById('Grad');
 
     // Napravi 25 opcija
     for (let i = 1; i <= 25; i++) {
