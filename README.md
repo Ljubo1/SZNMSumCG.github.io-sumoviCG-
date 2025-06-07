@@ -54,5 +54,18 @@ SLUŽBA ZA NADZOR MREŽE I SERVISA
         <option value="Mojkovac">Mojkovac</option>
         <option value="Andrijevica">Andrijevica</option>
     </select>
+    <!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>PG_Mtel</title>
+</head>
+<body>
+    <h1>PG_Mtel</h1>
+    <p>5/1/3 up4-7, šum ~18dB, nod Crnogorskih serdara 81
+    5/1/0_ up 4,7 šum 18db sa noda Hotel New StarPG_Mtel.</p>
+    <a href="../index.html">Nazad na početnu</a>
+</body>
+</html>
 </body>
 </html>
