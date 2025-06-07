@@ -1,5 +1,5 @@
 # SZNMSumCG.github.io-sumoviCG-
-<!DOCTYPE html>
+<ŠUMOVI U CG>
 <html lang="sr">
 <head>
   <meta charset="UTF-8">
