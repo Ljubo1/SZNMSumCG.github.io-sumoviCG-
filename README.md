@@ -84,7 +84,7 @@ for (let i = 0; i < Grad.length; i++) {
           <title>Dugme ${Grad}</title>
         </head>
         <body>
-          <h2>Dugme ${broj} – Unos teksta</h2>
+          <h2>Dugme ${Grad} – Unos teksta</h2>
           <textarea rows="15" cols="80" placeholder="Ovde unesite tekst..."></textarea>
         </body>
         </html>
