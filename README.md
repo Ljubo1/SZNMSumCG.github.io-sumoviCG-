@@ -65,7 +65,7 @@
   
 ];
 
-for (let i = 0; i < nazivi.length; i++) {
+for (let i = 0; i < Grad.length; i++) {
   const option = document.createElement('option');
   option.value = i;
   option.textContent = nazivi[i];
@@ -81,7 +81,7 @@ for (let i = 0; i < nazivi.length; i++) {
         <html lang="sr">
         <head>
           <meta charset="UTF-8">
-          <title>Dugme ${broj}</title>
+          <title>Dugme ${Grad}</title>
         </head>
         <body>
           <h2>Dugme ${broj} – Unos teksta</h2>
