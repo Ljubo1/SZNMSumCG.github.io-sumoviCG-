@@ -38,17 +38,43 @@
   <script>
     const select = document.getElementById('Grad');
 
-    // Napravi 25 opcija
-    for (let i = 1; i <= 25; i++) {
-      const option = document.createElement('option');
-      option.value = i;
-      option.textContent = `Dugme ${i}`;
-      select.appendChild(option);
-    }
+    // Napravi 22 opcija
+   const nazivi = [
+  "PG_Mtel",
+  "PG_Stari Aerodrom",
+  "PG_Bazar",
+  "PG_City Quart",
+  "PG_AutoZeta",
+  "PG_Zelenika",
+  "Cetinje",
+  "Tivat",
+  "Herceg Novi",
+  "Igalo",
+  "Budva",
+  "Bečići",
+  "Petrovac",
+  "Bar",
+  "Ulcinj",
+  "Nikšić",
+  "Pljevlja",
+  "Bijelo Polje",
+  "Berane",
+  "Rožaje",
+  "Mojkovac",
+  "Andrijevica",
+  
+];
+
+for (let i = 0; i < nazivi.length; i++) {
+  const option = document.createElement('option');
+  option.value = i;
+  option.textContent = nazivi[i];
+  select.appendChild(option);
+}
 
     function otvori() {
-      const broj = select.value;
-      if (!broj) return;
+      const index = select.value;
+      const index = Grad.index;
 
       const html = `
         <!DOCTYPE html>
