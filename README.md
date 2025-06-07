@@ -8,6 +8,7 @@ SLUŽBA ZA NADZOR MREŽE I SERVISA
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+            background-color: #add8e6;
         }
         h1 {
             color: #333;
