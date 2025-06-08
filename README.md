@@ -14,7 +14,7 @@
             color: white; /* Tekst da bude čitljiv na tamnijoj pozadini */
         }
         h1 {
-            color: #fff;
+            color: #333;
         }
         select {
             padding: 10px;
