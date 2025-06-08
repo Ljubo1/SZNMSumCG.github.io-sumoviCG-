@@ -14,7 +14,7 @@
             color: #00ccff; /* Plava boja za naslov */
         }
         label {
-            color: yellow; /* Žuta boja za labelu */
+            color: red; /* Crvena boja za labelu */
         }
         select {
             padding: 10px;
