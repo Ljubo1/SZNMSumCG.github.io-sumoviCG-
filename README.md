@@ -7,7 +7,7 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
-            background-image: url('[images/pozadina.jpg](https://www.google.com/url?sa=i&url=https%3A%2F%2Fvtonline.vt.edu%2FCertificates%2FInternet-Network-Technologies.html&psig=AOvVaw3h-f50L6DH6xEptNeS8CJX&ust=1749463371151000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLClqJHJ4Y0DFQAAAAAdAAAAABAE)'); /* 👉 putanja do slike */
+            background-image: url([images/pozadina.jpg](https://www.google.com/url?sa=i&url=https%3A%2F%2Fvtonline.vt.edu%2FCertificates%2FInternet-Network-Technologies.html&psig=AOvVaw3h-f50L6DH6xEptNeS8CJX&ust=1749463371151000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLClqJHJ4Y0DFQAAAAAdAAAAABAE); /* 👉 putanja do slike */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
