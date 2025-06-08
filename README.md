@@ -8,13 +8,13 @@
             font-family: Arial, sans-serif;
             padding: 20px;
             background-color: #808080;
-            color: white; /* Podrazumevana boja teksta */
+            color: red; /* Podrazumevana boja teksta */
         }
         h1 {
             color: #00ccff; /* Plava boja za naslov */
         }
         label {
-            color: red; /* Crvena boja za labelu */
+            color: yellow; /* Žuta boja za labelu */
         }
         select {
             padding: 10px;
