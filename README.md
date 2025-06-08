@@ -8,13 +8,19 @@
             font-family: Arial, sans-serif;
             padding: 20px;
             background-color: #808080;
+            color: white; /* Podrazumevana boja teksta */
         }
         h1 {
-            color: #333;
+            color: #00ccff; /* Plava boja za naslov */
+        }
+        label {
+            color: yellow; /* Žuta boja za labelu */
         }
         select {
             padding: 10px;
             font-size: 16px;
+            color: white; /* Bijela boja za tekst u meniju */
+            background-color: #555; /* Tamna pozadina menija */
         }
     </style>
     <script>
