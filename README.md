@@ -5,9 +5,7 @@
     <title>Služba za nadzor mreže i servisa</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #808080;
+            background-image: url('images/pozadina.jpg');
         }
         h1 {
             color: #333;
