@@ -3,6 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Bar</title>
+     <style>
+        body {
+            background-color: #1a1a1a; /* Tamna pozadina */
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .zuto-dugme {
+            display: inline-block;
+            background-color: yellow;
+            color: black;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .zuto-dugme:hover {
+            background-color: #e6d200; /* malo tamnija žuta na hover */
+        }
+    </style>
 </head>
 <body>
     <h1>Bar</h1>
@@ -10,6 +33,7 @@
     <p>5/0/0 0,3 šum 15dB nod Jovana Stojanovića 10</p>
     <p>5/0/2 4,7 šum 20db nod 1,44 Branka Calovica 6b</p>
     <p>5/0/4 4,7 šum 23db nod 1.103 Maša Đurovića A8-2.</p>
-    <a href="../index.html">Nazad na početnu</a>
+    <!-- Dugme za nazad -->
+    <a href="../index.html" class="zuto-dugme">Nazad na početnu</a>
 </body>
 </html>
