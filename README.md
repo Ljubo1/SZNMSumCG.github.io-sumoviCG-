@@ -8,7 +8,7 @@
             font-family: Arial, sans-serif;
             padding: 20px;
             background-color: #808080;
-            color: red; /* Podrazumevana boja teksta */
+            color: DarkRed; /* Podrazumevana boja teksta */
         }
         h1 {
             color: #00ccff; /* Plava boja za naslov */
