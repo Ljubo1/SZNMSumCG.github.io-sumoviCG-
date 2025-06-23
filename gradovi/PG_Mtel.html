@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>PG Mtel - Komentari</title>
     <style>
         body {
@@ -11,12 +11,15 @@
             padding: 20px;
             display: flex;
             justify-content: space-between;
-            height: 100vh;
+            flex-wrap: wrap;
             margin: 0;
         }
+
         .main-content {
             width: 55%;
+            box-sizing: border-box;
         }
+
         .comment-section {
             width: 40%;
             background-color: #2a2a2a;
@@ -24,6 +27,7 @@
             border-radius: 8px;
             box-sizing: border-box;
         }
+
         .zuto-dugme {
             display: inline-block;
             background-color: yellow;
@@ -34,15 +38,17 @@
             border-radius: 5px;
             margin-top: 20px;
         }
+
         .zuto-dugme:hover {
             background-color: #e6d200;
         }
+
         iframe {
             width: 100%;
             height: 500px;
             border: none;
             border-radius: 5px;
-            background: white;
+            background-color: white;
         }
     </style>
 </head>
@@ -59,8 +65,13 @@
 
     <div class="comment-section">
         <h2>Ostavi komentar</h2>
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScqsmkYs14S6ZmYWo81vKar8fklCgEpR-Ylv58OvSzBcY8EBg/viewform?embedded=true"
-                frameborder="0" marginheight="0" marginwidth="0">Učitavanje forme…</iframe>
+        <iframe 
+            src="https://docs.google.com/forms/d/e/1FAIpQLScqsmkYs14S6ZmYWo81vKar8fklCgEpR-Ylv58OvSzBcY8EBg/viewform?embedded=true" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0">
+            Učitavanje…
+        </iframe>
     </div>
 </body>
 </html>
