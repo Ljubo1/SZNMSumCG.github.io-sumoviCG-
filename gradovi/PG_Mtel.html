@@ -5,10 +5,29 @@
     <title>PG Mtel</title>
     <style>
         body {
-            background-color: #1a1a1a; /* Tamna pozadina */
+            background-color: #1a1a1a;
             color: white;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .left {
+            width: 50%;
             padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .right {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            border-left: 2px solid #444;
         }
 
         .zuto-dugme {
@@ -23,19 +42,121 @@
         }
 
         .zuto-dugme:hover {
-            background-color: #e6d200; /* malo tamnija žuta na hover */
+            background-color: #e6d200;
+        }
+
+        .komentar {
+            background-color: #2a2a2a;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .komentar button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 3px 8px;
+            cursor: pointer;
+        }
+
+        .komentar button:hover {
+            background-color: darkred;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        button {
+            background-color: yellow;
+            color: black;
+            font-weight: bold;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e6d200;
         }
     </style>
 </head>
 <body>
-    <h1>PG Mtel</h1>
-    <p>5/1/3 4,7 šum ~18dB nod Crnogorskih serdara 81.</p>
-    <p>5/1/3 4,7 Šum 21db nod Zeta Gradnja Stadion 4.</p>
-    <p>5/1/0 4,7 šum 18db nod Hotel New Star.</p>
-    <p>5/1/3 0,3 šum 24db 2 noda Jovana Tomaševića 17 i Bratstva i Jedinstva 175.</p>
+    <div class="container">
+        <!-- Leva strana -->
+        <div class="left">
+            <h1>PG Mtel</h1>
+            <p>5/1/3 4,7 šum ~18dB nod Crnogorskih serdara 81.</p>
+            <p>5/1/3 4,7 Šum 21db nod Zeta Gradnja Stadion 4.</p>
+            <p>5/1/0 4,7 šum 18db nod Hotel New Star.</p>
+            <p>5/1/3 0,3 šum 24db 2 noda Jovana Tomaševića 17 i Bratstva i Jedinstva 175.</p>
+            <a href="../index.html" class="zuto-dugme">Nazad na početnu</a>
+        </div>
 
-    <!-- Dugme za nazad -->
-    <a href="../index.html" class="zuto-dugme">Nazad na početnu</a>
+        <!-- Desna strana: komentari -->
+        <div class="right">
+            <h2>Dodaj komentar</h2>
+            <textarea id="tekstKomentara" rows="4" placeholder="Unesite komentar..."></textarea>
+            <button onclick="dodajKomentar()">Pošalji</button>
+
+            <h3>Komentari:</h3>
+            <div id="listaKomentara"></div>
+        </div>
+    </div>
+
+    <script>
+        // Učitaj komentare iz localStorage-a kad se stranica učita
+        window.onload = function() {
+            prikaziKomentare();
+        }
+
+        function dodajKomentar() {
+            const tekst = document.getElementById('tekstKomentara').value.trim();
+            if (tekst === '') return;
+
+            let komentari = JSON.parse(localStorage.getItem('komentari')) || [];
+            komentari.push(tekst);
+            localStorage.setItem('komentari', JSON.stringify(komentari));
+
+            document.getElementById('tekstKomentara').value = '';
+            prikaziKomentare();
+        }
+
+        function obrisiKomentar(index) {
+            let komentari = JSON.parse(localStorage.getItem('komentari')) || [];
+            komentari.splice(index, 1);
+            localStorage.setItem('komentari', JSON.stringify(komentari));
+            prikaziKomentare();
+        }
+
+        function prikaziKomentare() {
+            const kontejner = document.getElementById('listaKomentara');
+            kontejner.innerHTML = '';
+
+            let komentari = JSON.parse(localStorage.getItem('komentari')) || [];
+
+            komentari.forEach((tekst, index) => {
+                const div = document.createElement('div');
+                div.className = 'komentar';
+                div.innerHTML = `
+                    ${tekst}
+                    <button onclick="obrisiKomentar(${index})">Obriši</button>
+                `;
+                kontejner.appendChild(div);
+            });
+        }
+    </script>
 </body>
 </html>
-    
