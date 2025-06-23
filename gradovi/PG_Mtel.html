@@ -2,7 +2,7 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8" />
-    <title>PG Mtel</title>
+    <title>PG Mtel - Komentari</title>
     <style>
         body {
             background-color: #1a1a1a;
@@ -23,6 +23,8 @@
             padding: 15px;
             border-radius: 8px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
         .zuto-dugme {
             display: inline-block;
@@ -40,11 +42,44 @@
         h2 {
             margin-top: 0;
         }
-        iframe {
-            border: none;
+        textarea {
             width: 100%;
-            height: 500px;
+            resize: none;
+            padding: 10px;
             border-radius: 5px;
+            margin-bottom: 10px;
+            border: none;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            background-color: yellow;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e6d200;
+        }
+        #commentsList {
+            margin-top: 15px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+        .comment {
+            background-color: #3a3a3a;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+        #poruka {
+            margin-top: 10px;
+            min-height: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -60,11 +95,64 @@
     </div>
 
     <div class="comment-section">
-        <h2>Unesite komentar</h2>
-        <iframe src="https://docs.google.com/spreadsheets/d/1i_R0MKoLZ7FKwu_CnNlr6aQPhrRSnafTnSUxr5O3SuQ/edit?usp=sharing" 
-                loading="lazy">
-            Loading…
-        </iframe>
+        <h2>Komentari</h2>
+        <textarea id="commentInput" rows="3" placeholder="Unesite komentar..."></textarea>
+        <button id="submitComment">Pošalji komentar</button>
+        <div id="poruka"></div>
+        <div id="commentsList"></div>
     </div>
+
+    <form id="googleForm" action="https://docs.google.com/forms/d/e/1FAIpQLScqsmkYs14S6ZmYWo81vKar8fklCgEpR-Ylv58OvSzBcY8EBg/formResponse" method="POST" target="hidden_iframe" style="display:none;">
+        <input name="entry.123456789" id="hiddenComment" type="text" />
+    </form>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+    <script>
+        const commentInput = document.getElementById('commentInput');
+        const submitBtn = document.getElementById('submitComment');
+        const porukaDiv = document.getElementById('poruka');
+        const commentsList = document.getElementById('commentsList');
+        const googleForm = document.getElementById('googleForm');
+        const hiddenComment = document.getElementById('hiddenComment');
+
+        // Učitavanje komentara iz localStorage
+        function loadComments() {
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            commentsList.innerHTML = '';
+            comments.forEach(comment => {
+                const div = document.createElement('div');
+                div.className = 'comment';
+                div.textContent = comment;
+                commentsList.appendChild(div);
+            });
+        }
+
+        // Dodavanje komentara lokalno i slanje u Google Formu
+        submitBtn.addEventListener('click', () => {
+            const comment = commentInput.value.trim();
+            if (!comment) {
+                porukaDiv.style.color = 'red';
+                porukaDiv.textContent = 'Molimo unesite komentar.';
+                return;
+            }
+
+            // Dodaj lokalno
+            let comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.push(comment);
+            localStorage.setItem('comments', JSON.stringify(comments));
+            loadComments();
+
+            // Reset forme i poruke
+            commentInput.value = '';
+            porukaDiv.style.color = 'green';
+            porukaDiv.textContent = 'Uspješno ste unijeli komentar.';
+
+            // Pošalji na Google Formu
+            hiddenComment.value = comment;
+            googleForm.submit();
+        });
+
+        window.onload = loadComments;
+    </script>
 </body>
 </html>
