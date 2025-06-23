@@ -12,18 +12,15 @@
             display: flex;
             justify-content: space-between;
         }
-
         .main-content {
             width: 60%;
         }
-
         .comment-section {
             width: 35%;
             background-color: #2a2a2a;
             padding: 15px;
             border-radius: 8px;
         }
-
         .zuto-dugme {
             display: inline-block;
             background-color: yellow;
@@ -34,11 +31,9 @@
             border-radius: 5px;
             margin-top: 20px;
         }
-
         .zuto-dugme:hover {
             background-color: #e6d200;
         }
-
         .comment {
             background-color: #3a3a3a;
             padding: 10px;
@@ -46,7 +41,6 @@
             border-radius: 5px;
             position: relative;
         }
-
         .comment button {
             position: absolute;
             right: 10px;
@@ -58,8 +52,7 @@
             cursor: pointer;
             border-radius: 3px;
         }
-
-        textarea, input[type=text] {
+        textarea {
             width: 100%;
             resize: none;
             padding: 10px;
@@ -69,7 +62,6 @@
             font-size: 14px;
             box-sizing: border-box;
         }
-
         .comment-form button {
             width: 100%;
             padding: 10px;
@@ -80,11 +72,9 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         .comment-form button:hover {
             background-color: #e6d200;
         }
-
         #poruka {
             margin-top: 10px;
             min-height: 20px;
@@ -106,7 +96,6 @@
     <div class="comment-section">
         <h2>Komentari</h2>
         <div class="comment-form">
-            <input type="text" id="gradInput" placeholder="Unesite ime grada" />
             <textarea id="commentInput" rows="3" placeholder="Unesite komentar..."></textarea>
             <button onclick="addComment()">Pošalji komentar</button>
             <div id="poruka"></div>
@@ -124,34 +113,24 @@
         };
 
         function addComment() {
-            const grad = document.getElementById('gradInput').value.trim();
             const text = document.getElementById('commentInput').value.trim();
             const porukaDiv = document.getElementById('poruka');
 
-            if (!grad || !text) {
+            if (!text) {
                 porukaDiv.style.color = 'red';
-                porukaDiv.textContent = 'Molimo popunite oba polja!';
+                porukaDiv.textContent = 'Molimo unesite komentar!';
                 return;
             }
 
             porukaDiv.textContent = '';
 
-            // Trenutno vreme i datum u formatu YYYY-MM-DD i HH:MM:SS
-            const now = new Date();
-            const date = now.toISOString().split('T')[0];
-            const time = now.toTimeString().split(' ')[0];
-
             emailjs.send('service_xjyx9s9', 'template_0xyiz5f', {
-                city: grad,
-                message: text,
-                date: date,
-                time: time
+                message: text
             })
             .then(() => {
                 porukaDiv.style.color = 'lightgreen';
                 porukaDiv.textContent = 'Komentar je uspešno poslat!';
-                saveComment(`${grad}: ${text}`);
-                document.getElementById('gradInput').value = '';
+                saveComment(text);
                 document.getElementById('commentInput').value = '';
             }, (error) => {
                 porukaDiv.style.color = 'red';
