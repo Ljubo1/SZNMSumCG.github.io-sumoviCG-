@@ -59,7 +59,7 @@
             border-radius: 3px;
         }
 
-        textarea {
+        textarea, input[type=text] {
             width: 100%;
             resize: none;
             padding: 10px;
@@ -67,6 +67,7 @@
             margin-bottom: 10px;
             border: none;
             font-size: 14px;
+            box-sizing: border-box;
         }
 
         .comment-form button {
@@ -82,6 +83,12 @@
 
         .comment-form button:hover {
             background-color: #e6d200;
+        }
+
+        #poruka {
+            margin-top: 10px;
+            min-height: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -99,27 +106,59 @@
     <div class="comment-section">
         <h2>Komentari</h2>
         <div class="comment-form">
+            <input type="text" id="gradInput" placeholder="Unesite ime grada" />
             <textarea id="commentInput" rows="3" placeholder="Unesite komentar..."></textarea>
-            <button onclick="addComment()">Dodaj komentar</button>
+            <button onclick="addComment()">Pošalji komentar</button>
+            <div id="poruka"></div>
         </div>
         <div id="commentsList"></div>
     </div>
 
+    <!-- EmailJS -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-        // Učitavanje komentara iz LocalStorage
+        // Inicijalizuj EmailJS sa tvojim public key-em
+        emailjs.init('eQTleYe3eIjJ_s9ok');
+
         window.onload = function() {
             loadComments();
         };
 
         function addComment() {
-            const input = document.getElementById('commentInput');
-            const text = input.value.trim();
-            if (text === "") return;
+            const grad = document.getElementById('gradInput').value.trim();
+            const text = document.getElementById('commentInput').value.trim();
+            const porukaDiv = document.getElementById('poruka');
 
+            if (!grad || !text) {
+                porukaDiv.style.color = 'red';
+                porukaDiv.textContent = 'Molimo popunite oba polja!';
+                return;
+            }
+
+            porukaDiv.textContent = '';
+
+            // Slanje mejla preko EmailJS
+            emailjs.send('service_xjyx9s9', 'template_0xyiz5f', {
+                city: grad,
+                message: text
+            })
+            .then(() => {
+                porukaDiv.style.color = 'lightgreen';
+                porukaDiv.textContent = 'Komentar je uspešno poslat!';
+                saveComment(text);
+                document.getElementById('gradInput').value = '';
+                document.getElementById('commentInput').value = '';
+            }, (error) => {
+                porukaDiv.style.color = 'red';
+                porukaDiv.textContent = 'Greška prilikom slanja!';
+                console.error('EmailJS greška:', error);
+            });
+        }
+
+        function saveComment(text) {
             let comments = JSON.parse(localStorage.getItem('comments')) || [];
             comments.push(text);
             localStorage.setItem('comments', JSON.stringify(comments));
-            input.value = "";
             loadComments();
         }
 
