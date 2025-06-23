@@ -8,26 +8,20 @@
             background-color: #1a1a1a;
             color: white;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
+            padding: 20px;
             display: flex;
-            min-height: 100vh;
+            justify-content: space-between;
         }
 
-        .left {
-            width: 50%;
-            padding: 20px;
-            box-sizing: border-box;
+        .main-content {
+            width: 60%;
         }
 
-        .right {
-            width: 50%;
-            padding: 20px;
-            box-sizing: border-box;
-            border-left: 2px solid #444;
+        .comment-section {
+            width: 35%;
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
         }
 
         .zuto-dugme {
@@ -45,116 +39,109 @@
             background-color: #e6d200;
         }
 
-        .komentar {
-            background-color: #2a2a2a;
+        .comment {
+            background-color: #3a3a3a;
             padding: 10px;
-            margin-bottom: 10px;
+            margin-top: 10px;
             border-radius: 5px;
             position: relative;
         }
 
-        .komentar button {
+        .comment button {
             position: absolute;
-            top: 5px;
-            right: 5px;
+            right: 10px;
+            top: 10px;
             background-color: red;
             color: white;
             border: none;
-            border-radius: 3px;
-            padding: 3px 8px;
+            padding: 3px 7px;
             cursor: pointer;
+            border-radius: 3px;
         }
 
-        .komentar button:hover {
-            background-color: darkred;
-        }
-
-        input, textarea {
+        textarea {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
+            resize: none;
+            padding: 10px;
+            border-radius: 5px;
             margin-bottom: 10px;
-            border-radius: 4px;
             border: none;
+            font-size: 14px;
         }
 
-        button {
+        .comment-form button {
+            width: 100%;
+            padding: 10px;
             background-color: yellow;
             color: black;
             font-weight: bold;
-            padding: 8px 15px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
         }
 
-        button:hover {
+        .comment-form button:hover {
             background-color: #e6d200;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Leva strana -->
-        <div class="left">
-            <h1>PG Mtel</h1>
-            <p>5/1/3 4,7 šum ~18dB nod Crnogorskih serdara 81.</p>
-            <p>5/1/3 4,7 Šum 21db nod Zeta Gradnja Stadion 4.</p>
-            <p>5/1/0 4,7 šum 18db nod Hotel New Star.</p>
-            <p>5/1/3 0,3 šum 24db 2 noda Jovana Tomaševića 17 i Bratstva i Jedinstva 175.</p>
-            <a href="../index.html" class="zuto-dugme">Nazad na početnu</a>
-        </div>
+    <div class="main-content">
+        <h1>PG Mtel</h1>
+        <p>5/1/3 4,7 šum ~18dB nod Crnogorskih serdara 81.</p>
+        <p>5/1/3 4,7 Šum 21db nod Zeta Gradnja Stadion 4.</p>
+        <p>5/1/0 4,7 šum 18db nod Hotel New Star.</p>
+        <p>5/1/3 0,3 šum 24db 2 noda Jovana Tomaševića 17 i Bratstva i Jedinstva 175.</p>
+        <a href="../index.html" class="zuto-dugme">Nazad na početnu</a>
+    </div>
 
-        <!-- Desna strana: komentari -->
-        <div class="right">
-            <h2>Dodaj komentar</h2>
-            <textarea id="tekstKomentara" rows="4" placeholder="Unesite komentar..."></textarea>
-            <button onclick="dodajKomentar()">Pošalji</button>
-
-            <h3>Komentari:</h3>
-            <div id="listaKomentara"></div>
+    <div class="comment-section">
+        <h2>Komentari</h2>
+        <div class="comment-form">
+            <textarea id="commentInput" rows="3" placeholder="Unesite komentar..."></textarea>
+            <button onclick="addComment()">Dodaj komentar</button>
         </div>
+        <div id="commentsList"></div>
     </div>
 
     <script>
-        // Učitaj komentare iz localStorage-a kad se stranica učita
+        // Učitavanje komentara iz LocalStorage
         window.onload = function() {
-            prikaziKomentare();
+            loadComments();
+        };
+
+        function addComment() {
+            const input = document.getElementById('commentInput');
+            const text = input.value.trim();
+            if (text === "") return;
+
+            let comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.push(text);
+            localStorage.setItem('comments', JSON.stringify(comments));
+            input.value = "";
+            loadComments();
         }
 
-        function dodajKomentar() {
-            const tekst = document.getElementById('tekstKomentara').value.trim();
-            if (tekst === '') return;
-
-            let komentari = JSON.parse(localStorage.getItem('komentari')) || [];
-            komentari.push(tekst);
-            localStorage.setItem('komentari', JSON.stringify(komentari));
-
-            document.getElementById('tekstKomentara').value = '';
-            prikaziKomentare();
+        function deleteComment(index) {
+            let comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.splice(index, 1);
+            localStorage.setItem('comments', JSON.stringify(comments));
+            loadComments();
         }
 
-        function obrisiKomentar(index) {
-            let komentari = JSON.parse(localStorage.getItem('komentari')) || [];
-            komentari.splice(index, 1);
-            localStorage.setItem('komentari', JSON.stringify(komentari));
-            prikaziKomentare();
-        }
+        function loadComments() {
+            const container = document.getElementById('commentsList');
+            container.innerHTML = "";
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
 
-        function prikaziKomentare() {
-            const kontejner = document.getElementById('listaKomentara');
-            kontejner.innerHTML = '';
-
-            let komentari = JSON.parse(localStorage.getItem('komentari')) || [];
-
-            komentari.forEach((tekst, index) => {
+            comments.forEach((comment, index) => {
                 const div = document.createElement('div');
-                div.className = 'komentar';
+                div.className = 'comment';
                 div.innerHTML = `
-                    ${tekst}
-                    <button onclick="obrisiKomentar(${index})">Obriši</button>
+                    ${comment}
+                    <button onclick="deleteComment(${index})">Obriši</button>
                 `;
-                kontejner.appendChild(div);
+                container.appendChild(div);
             });
         }
     </script>
