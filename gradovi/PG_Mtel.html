@@ -2,7 +2,7 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8" />
-    <title>PG Mtel - Komentari</title>
+    <title>PG Mtel - Komentari i Pregled</title>
     <style>
         body {
             background-color: #1a1a1a;
@@ -13,20 +13,21 @@
             justify-content: space-between;
             min-height: 100vh;
             margin: 0;
+            box-sizing: border-box;
         }
-
         .main-content {
             width: 60%;
         }
-
         .comment-section {
             width: 35%;
             background-color: #2a2a2a;
             padding: 15px;
             border-radius: 8px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-
         .zuto-dugme {
             display: inline-block;
             background-color: yellow;
@@ -37,16 +38,19 @@
             border-radius: 5px;
             margin-top: 20px;
         }
-
         .zuto-dugme:hover {
             background-color: #e6d200;
         }
-
         iframe {
             border: none;
             width: 100%;
-            height: 600px;
             border-radius: 5px;
+        }
+        .form-iframe {
+            height: 500px;
+        }
+        .sheet-iframe {
+            height: 300px;
         }
     </style>
 </head>
@@ -63,9 +67,22 @@
 
     <div class="comment-section">
         <h2>Ostavi komentar</h2>
-        <!-- Ubaci ovde svoj embed kod Google forme -->
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd3xGZv4Yl7B_P_ZxjQnP9xxyFi0Za0Jqk47M3EZFqDDeLPv6Q/viewform?embedded=true" 
-                frameborder="0" marginheight="0" marginwidth="0">Učitavanje…</iframe>
+        <!-- Zameni link ispod sa tvojim Google Forms embed linkom -->
+        <iframe
+            class="form-iframe"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSd3xGZv4Yl7B_P_ZxjQnP9xxyFi0Za0Jqk47M3EZFqDDeLPv6Q/viewform?embedded=true"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            >Učitavanje...</iframe>
+
+        <h2>Pregled komentara</h2>
+        <!-- Google Sheets embed za pregled komentara, stavi link tvog Sheets-a -->
+        <iframe
+            class="sheet-iframe"
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQZdr2ecTz09h8pFp81WWj-0tJbCpU2iUr36Cg9Jk7jYZDsxG-3xQkCJt8g0sxfqQvTBohMGI7xqv4D/pubhtml?widget=true&amp;headers=false"
+            frameborder="0"
+            >Učitavanje...</iframe>
     </div>
 </body>
 </html>
