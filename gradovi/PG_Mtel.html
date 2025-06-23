@@ -2,7 +2,7 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8" />
-    <title>PG Mtel</title>
+    <title>PG Mtel - Komentari</title>
     <style>
         body {
             background-color: #1a1a1a;
@@ -11,16 +11,22 @@
             padding: 20px;
             display: flex;
             justify-content: space-between;
+            min-height: 100vh;
+            margin: 0;
         }
+
         .main-content {
             width: 60%;
         }
+
         .comment-section {
             width: 35%;
             background-color: #2a2a2a;
             padding: 15px;
             border-radius: 8px;
+            box-sizing: border-box;
         }
+
         .zuto-dugme {
             display: inline-block;
             background-color: yellow;
@@ -31,54 +37,16 @@
             border-radius: 5px;
             margin-top: 20px;
         }
+
         .zuto-dugme:hover {
             background-color: #e6d200;
         }
-        .comment {
-            background-color: #3a3a3a;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            position: relative;
-        }
-        .comment button {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            background-color: red;
-            color: white;
+
+        iframe {
             border: none;
-            padding: 3px 7px;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-        textarea {
             width: 100%;
-            resize: none;
-            padding: 10px;
+            height: 600px;
             border-radius: 5px;
-            margin-bottom: 10px;
-            border: none;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-        .comment-form button {
-            width: 100%;
-            padding: 10px;
-            background-color: yellow;
-            color: black;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .comment-form button:hover {
-            background-color: #e6d200;
-        }
-        #poruka {
-            margin-top: 10px;
-            min-height: 20px;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -94,80 +62,10 @@
     </div>
 
     <div class="comment-section">
-        <h2>Komentari</h2>
-        <div class="comment-form">
-            <textarea id="commentInput" rows="3" placeholder="Unesite komentar..."></textarea>
-            <button onclick="addComment()">Pošalji komentar</button>
-            <div id="poruka"></div>
-        </div>
-        <div id="commentsList"></div>
+        <h2>Ostavi komentar</h2>
+        <!-- Ubaci ovde svoj embed kod Google forme -->
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd3xGZv4Yl7B_P_ZxjQnP9xxyFi0Za0Jqk47M3EZFqDDeLPv6Q/viewform?embedded=true" 
+                frameborder="0" marginheight="0" marginwidth="0">Učitavanje…</iframe>
     </div>
-
-    <!-- EmailJS -->
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        emailjs.init('eQTleYe3eIjJ_s9ok');
-
-        window.onload = function() {
-            loadComments();
-        };
-
-        function addComment() {
-            const text = document.getElementById('commentInput').value.trim();
-            const porukaDiv = document.getElementById('poruka');
-
-            if (!text) {
-                porukaDiv.style.color = 'red';
-                porukaDiv.textContent = 'Molimo unesite komentar!';
-                return;
-            }
-
-            porukaDiv.textContent = '';
-
-            emailjs.send('service_xjyx9s9', 'template_0xyiz5f', {
-                message: text
-            })
-            .then(() => {
-                porukaDiv.style.color = 'lightgreen';
-                porukaDiv.textContent = 'Komentar je uspešno poslat!';
-                saveComment(text);
-                document.getElementById('commentInput').value = '';
-            }, (error) => {
-                porukaDiv.style.color = 'red';
-                porukaDiv.textContent = 'Greška prilikom slanja!';
-                console.error('EmailJS greška:', error);
-            });
-        }
-
-        function saveComment(text) {
-            let comments = JSON.parse(localStorage.getItem('comments')) || [];
-            comments.push(text);
-            localStorage.setItem('comments', JSON.stringify(comments));
-            loadComments();
-        }
-
-        function deleteComment(index) {
-            let comments = JSON.parse(localStorage.getItem('comments')) || [];
-            comments.splice(index, 1);
-            localStorage.setItem('comments', JSON.stringify(comments));
-            loadComments();
-        }
-
-        function loadComments() {
-            const container = document.getElementById('commentsList');
-            container.innerHTML = "";
-            const comments = JSON.parse(localStorage.getItem('comments')) || [];
-
-            comments.forEach((comment, index) => {
-                const div = document.createElement('div');
-                div.className = 'comment';
-                div.innerHTML = `
-                    ${comment}
-                    <button onclick="deleteComment(${index})">Obriši</button>
-                `;
-                container.appendChild(div);
-            });
-        }
-    </script>
 </body>
 </html>
