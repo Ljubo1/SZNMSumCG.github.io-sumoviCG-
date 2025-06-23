@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>PG Mtel</title>
     <style>
         body {
@@ -117,7 +117,6 @@
     <!-- EmailJS -->
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-        // Inicijalizuj EmailJS sa tvojim public key-em
         emailjs.init('eQTleYe3eIjJ_s9ok');
 
         window.onload = function() {
@@ -137,15 +136,21 @@
 
             porukaDiv.textContent = '';
 
-            // Slanje mejla preko EmailJS
+            // Trenutno vreme i datum u formatu YYYY-MM-DD i HH:MM:SS
+            const now = new Date();
+            const date = now.toISOString().split('T')[0];
+            const time = now.toTimeString().split(' ')[0];
+
             emailjs.send('service_xjyx9s9', 'template_0xyiz5f', {
                 city: grad,
-                message: text
+                message: text,
+                date: date,
+                time: time
             })
             .then(() => {
                 porukaDiv.style.color = 'lightgreen';
                 porukaDiv.textContent = 'Komentar je uspešno poslat!';
-                saveComment(text);
+                saveComment(`${grad}: ${text}`);
                 document.getElementById('gradInput').value = '';
                 document.getElementById('commentInput').value = '';
             }, (error) => {
