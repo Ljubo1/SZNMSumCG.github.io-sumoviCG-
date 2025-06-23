@@ -1,77 +1,68 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <meta charset="UTF-8">
-    <title>PG Mtel - Komentari</title>
-    <style>
-        body {
-            background-color: #1a1a1a;
-            color: white;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin: 0;
-        }
-
-        .main-content {
-            width: 55%;
-            box-sizing: border-box;
-        }
-
-        .comment-section {
-            width: 40%;
-            background-color: #2a2a2a;
-            padding: 15px;
-            border-radius: 8px;
-            box-sizing: border-box;
-        }
-
-        .zuto-dugme {
-            display: inline-block;
-            background-color: yellow;
-            color: black;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        .zuto-dugme:hover {
-            background-color: #e6d200;
-        }
-
-        iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
-            border-radius: 5px;
-            background-color: white;
-        }
-    </style>
+<meta charset="UTF-8" />
+<title>PG Mtel</title>
+<style>
+  body {
+    background-color: #1a1a1a;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  .main-content {
+    width: 60%;
+  }
+  .comment-section {
+    width: 35%;
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  .zuto-dugme {
+    display: inline-block;
+    background-color: yellow;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  .zuto-dugme:hover {
+    background-color: #e6d200;
+  }
+  iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: 8px;
+  }
+</style>
 </head>
 <body>
-    <div class="main-content">
-        <h1>PG Mtel</h1>
-        <p>5/1/3 4,7 šum 18dB nod Crnogorskih serdara 81.</p>
-        <p>5/1/3 4,7 Šum 21db nod Zeta Gradnja Stadion 4.</p>
-        <p>5/1/0 4,7 šum 18db nod Hotel New Star.</p>
-        <p>5/1/3 0,3 šum 24db 2 noda Jovana Tomaševića 17 i Bratstva i Jedinstva 175.</p>
-        <p>5/1/1 0,3 šum 17dB nod Nikic-stanovi.</p>
-        <a href="../index.html" class="zuto-dugme">Nazad na početnu</a>
-    </div>
+  <div class="main-content">
+    <h1>PG Mtel</h1>
+    <p>5/1/3 4,7 šum 18dB nod Crnogorskih serdara 81.</p>
+    <p>5/1/3 4,7 Šum 21db nod Zeta Gradnja Stadion 4.</p>
+    <p>5/1/0 4,7 šum 18db nod Hotel New Star.</p>
+    <p>5/1/3 0,3 šum 24db 2 noda Jovana Tomaševića 17 i Bratstva i Jedinstva 175.</p>
+    <p>5/1/1 0,3 šum 17dB nod Nikic-stanovi.</p>
+    <a href="../index.html" class="zuto-dugme">Nazad na početnu</a>
+  </div>
 
-    <div class="comment-section">
-        <h2>Ostavi komentar</h2>
-        <iframe 
-            src="https://docs.google.com/forms/d/e/1FAIpQLScqsmkYs14S6ZmYWo81vKar8fklCgEpR-Ylv58OvSzBcY8EBg/viewform?embedded=true" 
-            frameborder="0" 
-            marginheight="0" 
-            marginwidth="0">
-            Učitavanje…
-        </iframe>
-    </div>
+  <div class="comment-section">
+    <h2>Komentari</h2>
+    <!-- Ubaci Google formu kao iframe -->
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScqsmkYs14S6ZmYWo81vKar8fklCgEpR-Ylv58OvSzBcY8EBg/viewform?embedded=true" 
+      frameborder="0" marginheight="0" marginwidth="0" loading="lazy">
+      Loading…
+    </iframe>
+  </div>
 </body>
 </html>
